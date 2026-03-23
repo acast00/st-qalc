@@ -52,6 +52,7 @@ typedef struct {
 #define XK_SWITCH_MOD (1 << 13 | 1 << 14)
 
 /* function definitions used in config.h */
+static void diewithhonor(const Arg *);
 static void clipcopy(const Arg *);
 static void clippaste(const Arg *);
 static void numlock(const Arg *);
@@ -250,6 +251,12 @@ static char *opt_name = NULL;
 static char *opt_title = NULL;
 
 static uint buttons; /* bit field of pressed buttons */
+
+void diewithhonor(const Arg *ignore) {
+  const char *str = "\nexit\n\0";
+  ttywrite(str, strlen(str), 1);
+  // die("died with honor. F");
+}
 
 void clipcopy(const Arg *dummy) {
   Atom clipboard;
@@ -1776,7 +1783,10 @@ void run(void) {
      */
     if (XFilterEvent(&ev, None))
       continue;
-    if (ev.type == ConfigureNotify) {
+    if (ev.type == FocusIn) {
+      if (ev.xfocus.window != xw.win)
+        grabfocus();
+    } else if (ev.type == ConfigureNotify) {
       w = ev.xconfigure.width;
       h = ev.xconfigure.height;
     }
