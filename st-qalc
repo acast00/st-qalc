@@ -1,2 +1,4 @@
 #!/bin/bash 
-st-embed -i -g 300x4 -e qalc-copylastresult
+workspaceCount=$(i3-msg -t get_workspaces | jq length)
+off=$((36*$workspaceCount+23))
+st-embed -i -g 300x3+$off -e qalc-copylastresult

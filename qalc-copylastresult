@@ -5,7 +5,7 @@ fn=$(echo "$(openssl rand -hex 10).tmp")
 #echo "opening qalc!"
 qalc | tee $fn
 
-res=$(remove_termchars $fn | sed -n 's/^[^=≈]*[=≈]//p; s/[[:blank:]]//g' | tail -n1)
+res=$(remove_termchars $fn | sed -n 's/^.*[=≈]//p; s/[[:blank:]]//g' | tail -n1)
 
 #echo "coying $res into clipboard!"
 echo -n $res | nohup xclip -selection clipboard > /dev/null 2>&1
