@@ -1,2 +1,2 @@
 #!/bin/bash 
-st-embed -i -g 300x4 -e qalc
+st-embed -i -g 300x4 -e qalc-copylastresult

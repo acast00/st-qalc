@@ -253,7 +253,7 @@ static char *opt_title = NULL;
 static uint buttons; /* bit field of pressed buttons */
 
 void diewithhonor(const Arg *ignore) {
-  const char *str = "\nexit\n\0";
+  const char *str = "\nexit\n";
   ttywrite(str, strlen(str), 1);
   // die("died with honor. F");
 }
@@ -1783,10 +1783,7 @@ void run(void) {
      */
     if (XFilterEvent(&ev, None))
       continue;
-    if (ev.type == FocusIn) {
-      if (ev.xfocus.window != xw.win)
-        grabfocus();
-    } else if (ev.type == ConfigureNotify) {
+    if (ev.type == ConfigureNotify) {
       w = ev.xconfigure.width;
       h = ev.xconfigure.height;
     }
