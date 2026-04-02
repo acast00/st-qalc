@@ -2,14 +2,13 @@
 
 fn=$(echo "$(openssl rand -hex 10).tmp")
 
-#echo "opening qalc!"
 qalc | tee $fn
 
-res=$(remove_termchars $fn | sed -n 's/^.*[=≈]//p; s/[[:blank:]]//g' | tail -n1)
+res=$(ansifilter -p $fn | sed -n 's/^.*[=≈]//p; s/[[:blank:]]//g' | tail -n1)
 
-#echo "coying $res into clipboard!"
+res=$(echo $res | sed "s/−/-/g")
+
 echo -n $res | nohup xclip -selection clipboard > /dev/null 2>&1
-#echo "done"
-#rm $fn
+rm $fn
 
 #sleep 5
