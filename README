@@ -1,3 +1,8 @@
+st-qalc: A modification to run qalc in a top-most window (like dmenu), and copy the final calculation result into clipboard.
+
+Extra dependencies: libqalculate, xclip, ansifilter, openssl
+
+--------------------
 st - simple terminal
 --------------------
 st is a simple terminal emulator for X which sucks less.
