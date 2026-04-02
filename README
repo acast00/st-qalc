@@ -2,6 +2,8 @@ st-qalc: A modification to run qalc in a top-most window (like dmenu), and copy 
 
 Extra dependencies: libqalculate, xclip, ansifilter, openssl
 
+Extra keybind: Super + C -> exit the calculator and copy the final result
+
 --------------------
 st - simple terminal
 --------------------
